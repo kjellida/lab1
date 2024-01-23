@@ -6,8 +6,9 @@ public abstract class Car implements Movable {
     double currentSpeed; // The current speed of the car
     Color color; // Color of the car
     String modelName;
-    Point pos;
-    int direction;
+    //Point pos;
+    Point pos = new Point(0, 0);
+    int direction = 0;
 
 
     public int getNrDoors(){
@@ -38,6 +39,7 @@ public abstract class Car implements Movable {
         currentSpeed = 0;
     }
 
+
     public abstract double speedFactor();
 
     public abstract void incrementSpeed(double amount);
@@ -58,9 +60,9 @@ public abstract class Car implements Movable {
         } else if (direction == 1) {
             pos.setLocation(pos.getX(), pos.getY() + speed);
         } else if (direction == 2){
-            pos.setLocation(-(pos.getX() + speed), pos.getY());
+            pos.setLocation(pos.getX() - speed, pos.getY());
         } else if (direction == 3){
-            pos.setLocation(pos.getX(), -(pos.getY() + speed));
+            pos.setLocation(pos.getX(), pos.getY() - speed);
         }
     }
 
