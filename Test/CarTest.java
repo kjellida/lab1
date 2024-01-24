@@ -102,6 +102,11 @@ class CarTest {
         double currentSpeed = Math.min(0.1 + carVolvo.speedFactor() * amount,carVolvo.enginePower);
         assertEquals(currentSpeed, carVolvo.getCurrentSpeed());
 
+        carVolvo.gas(0.05);
+        double currSpeed = Math.min(currentSpeed + carVolvo.speedFactor() * amount,carVolvo.enginePower);
+        //assertEquals(currSpeed, carVolvo.getCurrentSpeed());
+
+
     }
 
     @Test
@@ -117,19 +122,19 @@ class CarTest {
     @Test
     void move() {
 
-        carVolvo.startEngine();
+        carSaab.startEngine();
 
-        double x = carVolvo.pos.getX();
-        double y = carVolvo.pos.getY();
-        carVolvo.move();
+        double x = carSaab.pos.getX();
+        double y = carSaab.pos.getY();
+        carSaab.move();
 
-        double expectedX = x + carVolvo.getCurrentSpeed();
+        double expectedX = x + carSaab.getCurrentSpeed();
         double expectedY = y;
 
 
 
-        assertEquals(expectedX, carVolvo.pos.getX());
-        assertEquals(expectedY, carVolvo.pos.getY());
+        assertEquals(expectedX, carSaab.pos.getX());
+        assertEquals(expectedY, carSaab.pos.getY());
 
 
 

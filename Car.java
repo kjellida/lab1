@@ -11,6 +11,13 @@ public abstract class Car implements Movable {
     int direction = 0;
 
 
+    public abstract double speedFactor();
+
+    public abstract void incrementSpeed(double amount);
+
+    public abstract void decrementSpeed(double amount);
+
+
     public int getNrDoors(){
         return nrDoors;
     }
@@ -39,17 +46,17 @@ public abstract class Car implements Movable {
         currentSpeed = 0;
     }
 
+    public void gas(double amount){
+        if(amount >= 0 && amount <= 0.1) {
+            incrementSpeed(amount);
+        }
+    }
 
-    public abstract double speedFactor();
-
-    public abstract void incrementSpeed(double amount);
-
-    public abstract void decrementSpeed(double amount);
-
-    public abstract void gas(double amount);
-
-    public abstract void brake (double amount);
-
+    public void brake(double amount) {
+        if (amount >= 0 && amount <= 0.1) {
+            decrementSpeed(amount);
+        }
+    }
 
     @Override
     public void move() {
@@ -77,5 +84,4 @@ public abstract class Car implements Movable {
     }
 
 
-
-    }
+}
