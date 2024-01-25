@@ -97,15 +97,13 @@ class CarTest {
     void gas() {
         carVolvo.startEngine();
         double amount = 0.5;
-
         carVolvo.gas(amount);
+
         double currentSpeed = Math.min(0.1 + carVolvo.speedFactor() * amount,carVolvo.enginePower);
+
         assertEquals(currentSpeed, carVolvo.getCurrentSpeed());
 
-
-       // double currSpeed = Math.min( currentSpeed + carVolvo.speedFactor() * amount,carVolvo.enginePower);
         carVolvo.gas(0.1);
-        //double currSpeed = Math.min( + carVolvo.speedFactor() * amount,carVolvo.enginePower);
         assertTrue(carVolvo.getCurrentSpeed() > currentSpeed );
 
 
@@ -117,8 +115,8 @@ class CarTest {
     void brake() {
         carVolvo.startEngine();
         double amount = 0.05;
-
         carVolvo.brake(amount);
+
         double currentSpeed = Math.max(0.1 - carVolvo.speedFactor() * amount,0);
         assertEquals(currentSpeed, carVolvo.getCurrentSpeed());
 

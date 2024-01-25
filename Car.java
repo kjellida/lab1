@@ -17,10 +17,10 @@ public abstract class Car implements Movable {
     }
 
 
-    public abstract double speedFactor();
+    protected abstract double speedFactor();
 
 
-    protected int getNrDoors(){
+    public int getNrDoors(){
         return nrDoors;
     }
 
@@ -48,14 +48,14 @@ public abstract class Car implements Movable {
         currentSpeed = 0;
     }
 
-    public void incrementSpeed(double amount) {
+    protected void incrementSpeed(double amount) {
         double speed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
         if(speed <= enginePower) {
             currentSpeed = speed;
         }
     }
 
-    public void decrementSpeed(double amount) {
+    protected void decrementSpeed(double amount) {
         double speed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
         if (speed <= enginePower){
             currentSpeed = speed;
