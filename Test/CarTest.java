@@ -45,7 +45,6 @@ class CarTest {
     @Test
     void setColor() {
         carSaab.setColor(Color.blue);
-
         assertEquals(Color.blue, carSaab.getColor());
 
     }
@@ -62,6 +61,7 @@ class CarTest {
 
     @Test
     void stopEngine() {
+        carVolvo.startEngine();
         carVolvo.stopEngine();
         double expectedSpeed = 0;
         assertEquals(expectedSpeed, carVolvo.getCurrentSpeed());
@@ -76,7 +76,7 @@ class CarTest {
     @Test
     void incrementSpeed() {
         carVolvo.startEngine();
-        double amount = 10;
+        double amount = 0.5;
 
         carVolvo.incrementSpeed(amount);
         double expectedSpeed = Math.min(0.1 + carVolvo.speedFactor() * amount, carVolvo.getEnginePower());
@@ -86,7 +86,7 @@ class CarTest {
     @Test
     void decrementSpeed() {
         carVolvo.startEngine();
-        double amount = 10;
+        double amount = 0.5;
 
         carVolvo.decrementSpeed(amount);
         double currentSpeed = Math.max(0.1 - carVolvo.speedFactor() * amount,0);
@@ -96,15 +96,19 @@ class CarTest {
     @Test
     void gas() {
         carVolvo.startEngine();
-        double amount = 0.1;
+        double amount = 0.5;
 
         carVolvo.gas(amount);
         double currentSpeed = Math.min(0.1 + carVolvo.speedFactor() * amount,carVolvo.enginePower);
         assertEquals(currentSpeed, carVolvo.getCurrentSpeed());
 
-        carVolvo.gas(0.05);
-        double currSpeed = Math.min(currentSpeed + carVolvo.speedFactor() * amount,carVolvo.enginePower);
-        //assertEquals(currSpeed, carVolvo.getCurrentSpeed());
+
+       // double currSpeed = Math.min( currentSpeed + carVolvo.speedFactor() * amount,carVolvo.enginePower);
+        carVolvo.gas(0.1);
+        //double currSpeed = Math.min( + carVolvo.speedFactor() * amount,carVolvo.enginePower);
+        assertTrue(carVolvo.getCurrentSpeed() > currentSpeed );
+
+
 
 
     }
@@ -112,11 +116,16 @@ class CarTest {
     @Test
     void brake() {
         carVolvo.startEngine();
-        double amount = 0.1;
+        double amount = 0.05;
 
         carVolvo.brake(amount);
         double currentSpeed = Math.max(0.1 - carVolvo.speedFactor() * amount,0);
         assertEquals(currentSpeed, carVolvo.getCurrentSpeed());
+
+        carVolvo.brake(0.08);
+        assertTrue(carVolvo.getCurrentSpeed() < currentSpeed);
+
+
     }
 
     @Test
@@ -149,6 +158,12 @@ class CarTest {
         int expectedDir = (initialDir + 1) % 4;
 
         assertEquals(expectedDir, carVolvo.direction);
+
+        carVolvo.turnLeft();
+        int exp2 = (expectedDir + 1) % 4;
+
+        assertEquals(exp2, carVolvo.direction);
+
 
     }
 

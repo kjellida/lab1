@@ -3,9 +3,9 @@ public class main {
 
         Saab95 saa = new Saab95();
 
-        int ha = saa.getNrDoors();
+        int a = saa.getNrDoors();
 
-        System.out.print(ha);
+        System.out.print(a);
 
 
     }

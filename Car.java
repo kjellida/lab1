@@ -6,19 +6,21 @@ public abstract class Car implements Movable {
     double currentSpeed; // The current speed of the car
     Color color; // Color of the car
     String modelName;
-    //Point pos;
     Point pos = new Point(0, 0);
     int direction = 0;
+
+    public Car(int nrDoors, Color color, double enginePower, String modelName) {
+        this.nrDoors = nrDoors;
+        this.color = color;
+        this.enginePower = enginePower;
+        this.modelName = modelName;
+    }
 
 
     public abstract double speedFactor();
 
-    public abstract void incrementSpeed(double amount);
 
-    public abstract void decrementSpeed(double amount);
-
-
-    public int getNrDoors(){
+    protected int getNrDoors(){
         return nrDoors;
     }
 
@@ -46,14 +48,28 @@ public abstract class Car implements Movable {
         currentSpeed = 0;
     }
 
+    public void incrementSpeed(double amount) {
+        double speed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
+        if(speed <= enginePower) {
+            currentSpeed = speed;
+        }
+    }
+
+    public void decrementSpeed(double amount) {
+        double speed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
+        if (speed <= enginePower){
+            currentSpeed = speed;
+        }
+    }
+
     public void gas(double amount){
-        if(amount >= 0 && amount <= 0.1) {
+        if(amount >= 0 && amount <= 1) {
             incrementSpeed(amount);
         }
     }
 
     public void brake(double amount) {
-        if (amount >= 0 && amount <= 0.1) {
+        if (amount >= 0 && amount <= 1) {
             decrementSpeed(amount);
         }
     }
