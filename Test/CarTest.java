@@ -10,7 +10,7 @@ class CarTest {
     static Car carVolvo;
     static Car carSaab;
 
-    @BeforeAll
+    @BeforeAll   //ska va before each
     public static void init(){
         carVolvo = new Volvo240();
         carSaab = new Saab95();
