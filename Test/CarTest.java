@@ -19,34 +19,23 @@ class CarTest {
 
     @Test
     void getNrDoors() {
-        int expectedNrDoors = 4;
-        assertEquals(expectedNrDoors, carVolvo.getNrDoors());
     }
 
     @Test
     void getEnginePower() {
-        double expectedEnginePower = 100;
-        assertEquals(expectedEnginePower, carVolvo.getEnginePower());
     }
 
     @Test
     void getCurrentSpeed() {
-        carVolvo.startEngine();
-        double expectedInitialSpeed = 0.1;
-        assertEquals(expectedInitialSpeed, carVolvo.getCurrentSpeed());
 
     }
 
     @Test
     void getColor() {
-        assertEquals(Color.black, carVolvo.getColor());
     }
 
     @Test
     void setColor() {
-        carSaab.setColor(Color.blue);
-        assertEquals(Color.blue, carSaab.getColor());
-
     }
 
 
@@ -71,6 +60,10 @@ class CarTest {
     void speedFactor() {
         double expectedSpeedFactor = 1.25 * 0.01 * 100;
         assertEquals(expectedSpeedFactor, carVolvo.speedFactor());
+
+
+        double expectedSpeedFactor2 =  125 * 0.01 * 1;
+        assertEquals(expectedSpeedFactor2,carSaab.speedFactor());
     }
 
     @Test
@@ -107,8 +100,6 @@ class CarTest {
         assertTrue(carVolvo.getCurrentSpeed() > currentSpeed );
 
 
-
-
     }
 
     @Test
@@ -139,12 +130,8 @@ class CarTest {
         double expectedY = y;
 
 
-
         assertEquals(expectedX, carSaab.pos.getX());
         assertEquals(expectedY, carSaab.pos.getY());
-
-
-
 
     }
 

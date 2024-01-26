@@ -1,6 +1,6 @@
 public class Point {
-    double x;
-    double y;
+    private double x;
+    private double y;
 
     public Point (double x, double y){
         this.x = x;
@@ -18,7 +18,7 @@ public class Point {
 
 
     public void setLocation(double x, double y){
-        this.x = x;
+        this.x = x;  // bättre att göra ny point och sätta värdet mha den förra
         this.y = y;
     }
 }

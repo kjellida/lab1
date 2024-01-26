@@ -1,13 +1,13 @@
 import java.awt.*;
 
 public abstract class Car implements Movable {
-    int nrDoors; // Number of doors on the car
-    double enginePower; // Engine power of the car
-    double currentSpeed; // The current speed of the car
-    Color color; // Color of the car
-    String modelName;
-    Point pos = new Point(0, 0);
-    int direction = 0;
+    private final int nrDoors; // Number of doors on the car
+    protected final double enginePower; // Engine power of the car
+    protected double currentSpeed; // The current speed of the car
+    protected Color color; // Color of the car
+    private final String modelName;
+    protected Point pos = new Point(0, 0);
+    protected int direction = 0;
 
     public Car(int nrDoors, Color color, double enginePower, String modelName) {
         this.nrDoors = nrDoors;
@@ -16,11 +16,9 @@ public abstract class Car implements Movable {
         this.modelName = modelName;
     }
 
-
     protected abstract double speedFactor();
 
-
-    public int getNrDoors(){
+    protected int getNrDoors(){
         return nrDoors;
     }
 
