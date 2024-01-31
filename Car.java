@@ -9,11 +9,15 @@ public abstract class Car implements Movable {
     protected Point pos = new Point(0, 0);
     protected int direction = 0;
 
-    public Car(int nrDoors, Color color, double enginePower, String modelName) {
+    protected final int weight;
+
+
+    public Car(int nrDoors, Color color, double enginePower, String modelName, int weight) {
         this.nrDoors = nrDoors;
         this.color = color;
         this.enginePower = enginePower;
         this.modelName = modelName;
+        this.weight = weight;
     }
 
     protected abstract double speedFactor();
@@ -75,14 +79,15 @@ public abstract class Car implements Movable {
         double speed = getCurrentSpeed();
 
         if (direction == 0){
-            pos.setLocation(pos.getX() + speed, pos.getY());
+           pos.setLocation(pos.getX() + speed, pos.getY());
         } else if (direction == 1) {
             pos.setLocation(pos.getX(), pos.getY() + speed);
         } else if (direction == 2){
-            pos.setLocation(pos.getX() - speed, pos.getY());
+           pos.setLocation(pos.getX() - speed, pos.getY());
         } else if (direction == 3){
             pos.setLocation(pos.getX(), pos.getY() - speed);
         }
+
     }
 
     @Override
