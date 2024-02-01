@@ -6,18 +6,19 @@ import java.util.List;
 
 public class CarTransport extends Car{
 
-    private boolean platformRaised;
-    private Deque <Car> carStack = new ArrayDeque<>();
-    private static final int MAX_CARS_ON_TRANSPORTER = 6;
-    private static final int MAX_CAR_WEIGHT = 200;
+    //private boolean platformRaised;
+    //private Deque <Car> carStack = new ArrayDeque<>();
+    //private static final int MAX_CARS_ON_TRANSPORTER = 6;
+  //  private static final int MAX_CAR_WEIGHT = 200;
 
-    //List<Car> carlist2 = new ArrayList<>();
+    PlatformTwoStates platform;
+
+
 
     public CarTransport(){
         super(2, Color.blue,200, "CarTransport", 500);
-        platformRaised = false;
-        // carStack = new ArrayDeque<>();
-
+        platform = new PlatformTwoStates(6,200);
+        platform.platformRaised = false;
         stopEngine();
     }
 
@@ -27,24 +28,24 @@ public class CarTransport extends Car{
     }
 
     void raisePlatform(){
-        platformRaised = true;
+        platform.raise();
     }
 
     void lowerPlatform() {
         if (getCurrentSpeed() == 0) {
-            platformRaised = false;
+            platform.lower();
         }
     }
 
     void loadCartransport(Car car){
-        if (carStack.size() < MAX_CARS_ON_TRANSPORTER && !platformRaised && car.weight < MAX_CAR_WEIGHT && checkPos(car) < 1){
-            carStack.push(car);
+        if (platform.carStack.size() < platform.MAX_CARS_ON_TRANSPORTER && !platform.platformRaised && car.weight < platform.MAX_CAR_WEIGHT && checkPos(car) < 1){
+            platform.carStack.push(car);
         }
     }
 
     void unloadCartransport(){
-        if(!platformRaised && !carStack.isEmpty()){
-           Car carR = carStack.pop();
+        if(!platform.platformRaised && !platform.carStack.isEmpty()){
+           Car carR = platform.carStack.pop();
            carR.pos.setLocation(this.pos.getX() + 1,this.pos.getY() + 1);
 
         }
@@ -64,7 +65,7 @@ public class CarTransport extends Car{
     @Override
     public void move() {
         super.move();
-        for(Car car : carStack){
+        for(Car car : platform.carStack){
             car.pos = this.pos;
         }
 
@@ -72,7 +73,7 @@ public class CarTransport extends Car{
 
     @Override
     public void startEngine(){
-        if(platformRaised) {
+        if(platform.platformRaised) {
             currentSpeed = 0.1;
         }
     }

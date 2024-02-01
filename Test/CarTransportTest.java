@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CarTransportTest {
 
-    static CarTransport cart;
+    static CarTransport carTransport;
 
     @BeforeEach
     public void init(){
-        cart = new CarTransport();
+        carTransport = new CarTransport();
 
     }
 
@@ -33,11 +33,11 @@ class CarTransportTest {
     @Test
     void unloadCartransport() {
         Car saab = new Saab95();
-        cart.loadCartransport(saab);
-        cart.unloadCartransport();
+        carTransport.loadCartransport(saab);
+        carTransport.unloadCartransport();
 
-        double x = cart.pos.getX() + 1;
-        double y = cart.pos.getY() + 1;
+        double x = carTransport.pos.getX() + 1;
+        double y = carTransport.pos.getY() + 1;
 
         assertEquals(x, saab.pos.getX());
         assertEquals(y, saab.pos.getY());
@@ -53,23 +53,23 @@ class CarTransportTest {
         Car volvo = new Volvo240();
 
         //cart.lowerPlatform();
-        cart.loadCartransport(volvo);
+        carTransport.loadCartransport(volvo);
         //cart.raisePlatform();
 
-        cart.startEngine();
+        carTransport.startEngine();
 
-        double x = cart.pos.getX();
-        double y = cart.pos.getY();
-        cart.move();
+        double x = carTransport.pos.getX();
+        double y = carTransport.pos.getY();
+        carTransport.move();
 
-        double expectedX = x + cart.getCurrentSpeed();
+        double expectedX = x + carTransport.getCurrentSpeed();
         double expectedY = y;
 
 
-        assertEquals(expectedX, cart.pos.getX());
-        assertEquals(expectedY, cart.pos.getY());
+        assertEquals(expectedX, carTransport.pos.getX());
+        assertEquals(expectedY, carTransport.pos.getY());
 
-        assertEquals(volvo.pos, cart.pos);
+        assertEquals(volvo.pos, carTransport.pos);
 
 
 

@@ -28,12 +28,11 @@ class CarShopTest {
     @Test
     void retrieveCar() {
         Car volvo = new Volvo240();
-
-       //workShop.retrieveCar(volvo);
+        //workShop.retrieveCar(volvo);
 
         Saab95 saab = new Saab95();
-        saabCarShop.addCar(saab);
 
+        saabCarShop.addCar(saab);
         saabCarShop.retrieveCar();
 
         assertFalse(saabCarShop.carsInShop.contains(saab));
