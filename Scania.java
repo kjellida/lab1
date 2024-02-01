@@ -2,6 +2,7 @@
 import java.awt.*;
 public class Scania extends Car{
     int platformAngle = 0;
+    int MAX_PLATFORM_ANGLE = 70;
 
     public Scania(){
         super(2, Color.pink, 200,"Scania",300);
@@ -20,7 +21,7 @@ public class Scania extends Car{
 
     public void raisePlatform(int amount){
         if(getCurrentSpeed() == 0) {
-            if (amount >= 0 && amount <= 70) {
+            if (amount >= 0 && amount <= MAX_PLATFORM_ANGLE) {
                 platformAngle += amount;
             }
         }
@@ -28,7 +29,7 @@ public class Scania extends Car{
 
    public void lowerPlatform(int amount){
         if(getCurrentSpeed() == 0) {
-            if (amount >= 0 && amount <= 70) {
+            if (amount >= 0 && amount <= MAX_PLATFORM_ANGLE) {
                 platformAngle -= amount;
             }
         }

@@ -45,11 +45,34 @@ class ScaniaTest {
         truckScania.raisePlatform(50);
         truckScania.startEngine();
         truckScania.incrementSpeed(1);
+
         assertEquals(0,truckScania.getCurrentSpeed());
+
+        truckScania.lowerPlatform(50);
+        truckScania.incrementSpeed(1);
+        double expectedSpeed = truckScania.speedFactor() * 1;
+
+        assertEquals(expectedSpeed, truckScania.getCurrentSpeed());
 
         //truckScania.platformAngle = 0;
        // truckScania.incrementSpeed(1);
       //  assertEquals(3.1, );
+
+        /*truckScania.raisePlatform(50);
+    truckScania.startEngine();
+    truckScania.incrementSpeed(1);
+
+    // Assert that the speed is still 0 since the platform is raised
+    assertEquals(0, truckScania.getCurrentSpeed());
+
+    // Lower the platform and test again
+    truckScania.lowerPlatform(50);
+    truckScania.incrementSpeed(1);
+
+    // Assert the expected speed when the platform is lowered
+    double expectedSpeed = truckScania.speedFactor() * 1;
+    assertEquals(expectedSpeed, truckScania.getCurrentSpeed());
+}*/
 
     }
 }

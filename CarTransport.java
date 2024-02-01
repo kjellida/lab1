@@ -6,13 +6,17 @@ import java.util.List;
 
 public class CarTransport extends Car{
 
-    boolean platformRaised;
-    Deque<Car> carStack = new ArrayDeque<>();
+    private boolean platformRaised;
+    private Deque<Car> carStack = new ArrayDeque<>();
+    private static final int MAX_CARS_ON_TRANSPORTER = 6;
+    private static final int MAX_CAR_WEIGHT = 200;
+
     //List<Car> carlist2 = new ArrayList<>();
 
     public CarTransport(){
         super(2, Color.blue,200, "CarTransport", 500);
         platformRaised = false;
+        // carStack = new ArrayDeque<>();
 
         stopEngine();
     }
@@ -33,13 +37,9 @@ public class CarTransport extends Car{
     }
 
     void loadCartransport(Car car){
-        if (carStack.size() < 6 && !platformRaised && car.weight < 200 && checkPos(car) < 1){
+        if (carStack.size() < MAX_CARS_ON_TRANSPORTER && !platformRaised && car.weight < MAX_CAR_WEIGHT && checkPos(car) < 1){
             carStack.push(car);
         }
-
-
-        // måste sätta size gräns här
-        // nåt med pos
     }
 
     void unloadCartransport(){
@@ -49,8 +49,6 @@ public class CarTransport extends Car{
 
         }
 
-
-        // nåt med pos
     }
 
     double checkPos(Car car) {
@@ -70,8 +68,13 @@ public class CarTransport extends Car{
             car.pos = this.pos;
         }
 
+    }
 
-
+    @Override
+    public void startEngine(){
+        if(platformRaised) {
+            currentSpeed = 0.1;
+        }
     }
 
 }
