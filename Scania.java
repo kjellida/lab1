@@ -1,11 +1,11 @@
 
 import java.awt.*;
 public class Scania extends Car{
-    int platformAngle = 0;
-    int MAX_PLATFORM_ANGLE = 70;
+    PlatformWithAngle platform;
 
     public Scania(){
         super(2, Color.pink, 200,"Scania",300);
+        platform = new PlatformWithAngle(70);
         stopEngine();
 
     }
@@ -15,37 +15,30 @@ public class Scania extends Car{
         return enginePower * 0.01;
     }
 
-    public int getPlatformAngle(){
-        return platformAngle;
-    }
 
-    public void raisePlatform(int amount){
+    public void raisePlatform(){
         if(getCurrentSpeed() == 0) {
-            if (amount >= 0 && amount <= MAX_PLATFORM_ANGLE) {
-                platformAngle += amount;
-            }
+            platform.raise();
         }
     }
 
-   public void lowerPlatform(int amount){
+   public void lowerPlatform(){
         if(getCurrentSpeed() == 0) {
-            if (amount >= 0 && amount <= MAX_PLATFORM_ANGLE) {
-                platformAngle -= amount;
-            }
+           platform.lower();
         }
     }
+
 
     @Override
      public void startEngine(){
-        if(platformAngle == 0) {
+        if(platform.platformAngle == 0) {
             currentSpeed = 0.1;
         }
     }
 
-  //    får jag sätta på engine när flaket är inte 0?
     @Override
     protected void incrementSpeed(double amount) {
-        if(platformAngle == 0) {
+        if(platform.platformAngle == 0) {
             currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
         }
     }

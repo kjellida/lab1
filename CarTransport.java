@@ -7,7 +7,7 @@ import java.util.List;
 public class CarTransport extends Car{
 
     private boolean platformRaised;
-    private Deque<Car> carStack = new ArrayDeque<>();
+    private Deque <Car> carStack = new ArrayDeque<>();
     private static final int MAX_CARS_ON_TRANSPORTER = 6;
     private static final int MAX_CAR_WEIGHT = 200;
 

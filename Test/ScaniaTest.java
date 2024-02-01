@@ -22,57 +22,39 @@ class ScaniaTest {
 
     @Test
     void raisePlatform() {
-        truckScania.raisePlatform(10);
-        int expAngle = 10;
+        truckScania.raisePlatform();
+        int expAngle = 5;
 
-        assertEquals(expAngle, truckScania.getPlatformAngle());
+        assertEquals(expAngle, truckScania.platform.getPlatformAngle());
 
-        truckScania.raisePlatform(50);
-        assertEquals(60,truckScania.getPlatformAngle());
+        truckScania.raisePlatform();
+        assertEquals(10,truckScania.platform.getPlatformAngle());
     }
 
     @Test
     void lowerPlatform() {
-        truckScania.platformAngle = 70;
-        truckScania.lowerPlatform(40);
-        assertEquals(30, truckScania.getPlatformAngle());
+        truckScania.platform.platformAngle = 70;
+        truckScania.lowerPlatform();
+        assertEquals(65, truckScania.platform.getPlatformAngle());
 
     }
 
     @Test
     void incrementSpeed() {
         //truckScania.startEngine();
-        truckScania.raisePlatform(50);
+        truckScania.raisePlatform();
         truckScania.startEngine();
         truckScania.incrementSpeed(1);
 
         assertEquals(0,truckScania.getCurrentSpeed());
 
-        truckScania.lowerPlatform(50);
+        truckScania.lowerPlatform();
         truckScania.incrementSpeed(1);
         double expectedSpeed = truckScania.speedFactor() * 1;
 
         assertEquals(expectedSpeed, truckScania.getCurrentSpeed());
 
-        //truckScania.platformAngle = 0;
-       // truckScania.incrementSpeed(1);
-      //  assertEquals(3.1, );
 
-        /*truckScania.raisePlatform(50);
-    truckScania.startEngine();
-    truckScania.incrementSpeed(1);
-
-    // Assert that the speed is still 0 since the platform is raised
-    assertEquals(0, truckScania.getCurrentSpeed());
-
-    // Lower the platform and test again
-    truckScania.lowerPlatform(50);
-    truckScania.incrementSpeed(1);
-
-    // Assert the expected speed when the platform is lowered
-    double expectedSpeed = truckScania.speedFactor() * 1;
-    assertEquals(expectedSpeed, truckScania.getCurrentSpeed());
-}*/
 
     }
 }

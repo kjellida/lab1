@@ -32,6 +32,16 @@ class CarTransportTest {
 
     @Test
     void unloadCartransport() {
+        Car saab = new Saab95();
+        cart.loadCartransport(saab);
+        cart.unloadCartransport();
+
+        double x = cart.pos.getX() + 1;
+        double y = cart.pos.getY() + 1;
+
+        assertEquals(x, saab.pos.getX());
+        assertEquals(y, saab.pos.getY());
+
     }
 
     @Test
