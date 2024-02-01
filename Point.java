@@ -17,9 +17,9 @@ public class Point {
     }
 
 
-    public void setLocation(double Nx, double Ny) {
+    public void setLocation(double x, double y) {
 
-        this.x = Nx;  // bättre att göra ny point och sätta värdet mha den förra, ska göra immutalble
-        this.y = Ny;
+        this.x = x;  // bättre att göra ny point och sätta värdet mha den förra, ska göra immutalble
+        this.y = y;
     }
 }
