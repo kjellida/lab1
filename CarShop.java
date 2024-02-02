@@ -1,29 +1,28 @@
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class CarShop <T extends Car> {
 
-    public int maxCapacity;
-    //final ArrayList <T> carModels; //måste ändra varje gång?
-    ArrayList <T> carsInShop = new ArrayList<>();
+    private final int maxCapacity;
+    protected ArrayList <T> carsInShop = new ArrayList<>();
 
 
-    public CarShop(int maxCapacity /*ArrayList<Car> carModels*/){
+    public CarShop(int maxCapacity){
         this.maxCapacity = maxCapacity;
-        //this.carModels = new ArrayList<>();;
     }
 
 
     public void addCar(T car){
-        if(carsInShop.size() < maxCapacity /*&& carModels.contains(car)*/){
+        if(carsInShop.size() < maxCapacity){
             carsInShop.add(car);
         }
     }
 
-    public void retrieveCar() {
-        if(!carsInShop.isEmpty()){
-            carsInShop.remove(0);
+    public Optional<T> retrieveCar() {
+        if (!carsInShop.isEmpty()) {
+            return Optional.ofNullable(carsInShop.remove(0));
         }
+        return Optional.empty();
     }
-
 
 }

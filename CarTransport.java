@@ -4,20 +4,15 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-public class CarTransport extends Car{
-
-    //private boolean platformRaised;
-    //private Deque <Car> carStack = new ArrayDeque<>();
-    //private static final int MAX_CARS_ON_TRANSPORTER = 6;
-  //  private static final int MAX_CAR_WEIGHT = 200;
-
-    PlatformTwoStates platform;
-
-
+public class CarTransport extends Car implements HasPlatform{
+    protected PlatformTwoStates platform;
+    protected Deque<Car> carStack = new ArrayDeque<>();
+    protected final int maxCarsOnPlatform = 6;
+    protected final int maxCarWeight = 200;
 
     public CarTransport(){
         super(2, Color.blue,200, "CarTransport", 500);
-        platform = new PlatformTwoStates(6,200);
+        platform = new PlatformTwoStates();
         platform.platformRaised = false;
         stopEngine();
     }
@@ -27,36 +22,35 @@ public class CarTransport extends Car{
         return enginePower * 0.01;
     }
 
-    void raisePlatform(){
+    @Override
+    public void raisePlatform(){
         platform.raise();
     }
-
-    void lowerPlatform() {
+    @Override
+    public void lowerPlatform() {
         if (getCurrentSpeed() == 0) {
             platform.lower();
         }
     }
 
-    void loadCartransport(Car car){
-        if (platform.carStack.size() < platform.MAX_CARS_ON_TRANSPORTER && !platform.platformRaised && car.weight < platform.MAX_CAR_WEIGHT && checkPos(car) < 1){
-           // platform.carStack.push(car);
-            platform.load(car);
+    public void loadCartransport(Car car){
+        if (carStack.size() < maxCarsOnPlatform && !platform.platformRaised && car.weight < maxCarWeight && checkPos(car) < 1){
+            carStack.push(car);
+
         }
     }
 
-    void unloadCartransport(){
-        if(!platform.platformRaised && !platform.carStack.isEmpty()){
-           //Car car = platform.carStack.pop();
-          // car.pos.setLocation(this.pos.getX() + 1,this.pos.getY() + 1);
-            Car car = platform.unload();
-            car.pos.setLocation(this.pos.getX() + 1,this.pos.getY() + 1);
+    public void unloadCartransport(){
+        if(!platform.platformRaised && !carStack.isEmpty()){
+           Car car = carStack.pop();
+           car.pos.setLocation(this.pos.getX() + 1,this.pos.getY() + 1);
 
 
         }
 
     }
 
-    double checkPos(Car car) {
+    protected double checkPos(Car car) {
        double newY = this.pos.getY() - car.pos.getY();
        double newX = this.pos.getX() - car.pos.getX();
 
@@ -69,7 +63,7 @@ public class CarTransport extends Car{
     @Override
     public void move() {
         super.move();
-        for(Car car : platform.carStack){
+        for(Car car : carStack){
             car.pos = this.pos;
         }
 

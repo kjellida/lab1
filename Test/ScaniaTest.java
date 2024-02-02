@@ -33,7 +33,7 @@ class ScaniaTest {
 
     @Test
     void lowerPlatform() {
-        truckScania.platform.platformAngle = 70;
+        truckScania.platform.platformAngle= 70;
         truckScania.lowerPlatform();
         assertEquals(65, truckScania.platform.getPlatformAngle());
 

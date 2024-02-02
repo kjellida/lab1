@@ -10,7 +10,6 @@ class CarTransportTest {
     @BeforeEach
     public void init(){
         carTransport = new CarTransport();
-
     }
 
     @Test
@@ -19,6 +18,7 @@ class CarTransportTest {
 
     @Test
     void raisePlatform() {
+
     }
 
     @Test
@@ -27,6 +27,15 @@ class CarTransportTest {
 
     @Test
     void loadCartransport() {
+        Scania scania = new Scania();
+        carTransport.loadCartransport(scania);
+
+        assertFalse(carTransport.carStack.contains(scania));
+
+        Car saab = new Saab95();
+        carTransport.loadCartransport(saab);
+
+        assertTrue(carTransport.carStack.contains(saab));
 
     }
 
@@ -35,6 +44,8 @@ class CarTransportTest {
         Car saab = new Saab95();
         carTransport.loadCartransport(saab);
         carTransport.unloadCartransport();
+
+        assertFalse(carTransport.carStack.contains(saab));
 
         double x = carTransport.pos.getX() + 1;
         double y = carTransport.pos.getY() + 1;

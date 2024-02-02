@@ -1,24 +1,24 @@
 public class PlatformWithAngle  {
 
-    int platformAngle = 0;
-    final int MAX_PLATFORM_ANGLE; //= 70; //om jag har en lika funktion men olika max angle
+    protected int platformAngle = 0;
+    private final int maxAngle;
 
-    public PlatformWithAngle(int MAX_PLATFORM_ANGLE){
-        this.MAX_PLATFORM_ANGLE = MAX_PLATFORM_ANGLE;
+    public PlatformWithAngle(int maxAngle){
+        this.maxAngle = maxAngle;
     }
 
     public int getPlatformAngle(){
         return platformAngle;
     }
 
-    void raise(){
+    protected void raise(){
         int amount = 5;
-        if (platformAngle < MAX_PLATFORM_ANGLE) {
+        if (platformAngle < maxAngle) {
             platformAngle += amount;
         }
     }
 
-    public void lower(){
+    protected void lower(){
         int amount = 5;
         if (platformAngle > 0) {
             platformAngle -= amount;
