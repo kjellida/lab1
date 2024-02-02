@@ -52,9 +52,8 @@ class CarTransportTest {
     void move() {
         Car volvo = new Volvo240();
 
-        //cart.lowerPlatform();
         carTransport.loadCartransport(volvo);
-        //cart.raisePlatform();
+        carTransport.raisePlatform();
 
         carTransport.startEngine();
 

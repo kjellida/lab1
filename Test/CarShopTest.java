@@ -16,7 +16,7 @@ class CarShopTest {
     @Test
     void addCar() {
         Car volvo = new Volvo240();
-        //workShop.addCar(volvo);
+        //saabCarShop.addCar(volvo);
 
         Saab95 saab = new Saab95();
         saabCarShop.addCar(saab);
@@ -28,7 +28,7 @@ class CarShopTest {
     @Test
     void retrieveCar() {
         Car volvo = new Volvo240();
-        //workShop.retrieveCar(volvo);
+        //saabCarShop.retrieveCar(volvo);
 
         Saab95 saab = new Saab95();
 

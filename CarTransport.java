@@ -39,14 +39,18 @@ public class CarTransport extends Car{
 
     void loadCartransport(Car car){
         if (platform.carStack.size() < platform.MAX_CARS_ON_TRANSPORTER && !platform.platformRaised && car.weight < platform.MAX_CAR_WEIGHT && checkPos(car) < 1){
-            platform.carStack.push(car);
+           // platform.carStack.push(car);
+            platform.load(car);
         }
     }
 
     void unloadCartransport(){
         if(!platform.platformRaised && !platform.carStack.isEmpty()){
-           Car carR = platform.carStack.pop();
-           carR.pos.setLocation(this.pos.getX() + 1,this.pos.getY() + 1);
+           //Car car = platform.carStack.pop();
+          // car.pos.setLocation(this.pos.getX() + 1,this.pos.getY() + 1);
+            Car car = platform.unload();
+            car.pos.setLocation(this.pos.getX() + 1,this.pos.getY() + 1);
+
 
         }
 

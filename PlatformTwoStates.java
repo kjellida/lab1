@@ -20,6 +20,16 @@ public class PlatformTwoStates {
         platformRaised = false;
     }
 
+    void load(Car car){
+        carStack.push(car);
+    }
+
+    Car unload(){
+        Car car = carStack.pop();
+        return car;
+
+    }
+
 
 
 
