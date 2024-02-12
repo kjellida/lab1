@@ -88,6 +88,8 @@ public abstract class Car implements Movable {
             pos.setLocation(pos.getX(), pos.getY() - speed);
         }
 
+
+
     }
 
     @Override
