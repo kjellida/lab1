@@ -14,6 +14,9 @@ public class DrawPanel extends JPanel{
     // To keep track of a single car's position
     Point volvoPoint = new Point();
 
+    Point saabPoint = new Point();
+    BufferedImage saabImage;
+
     BufferedImage volvoWorkshopImage;
     Point volvoWorkshopPoint = new Point(300,300);
 
@@ -22,6 +25,8 @@ public class DrawPanel extends JPanel{
         //volvoPoint.x = x;
        // volvoPoint.y = y;
         volvoPoint.setLocation(x,y);
+        saabPoint.setLocation(x,y + 100);
+
     }
 
     // Initializes the panel and reads the images
@@ -39,6 +44,7 @@ public class DrawPanel extends JPanel{
             // if you are starting in IntelliJ.
             volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
             volvoWorkshopImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/VolvoBrand.jpg"));
+            saabImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg"));
         } catch (IOException ex)
         {
             ex.printStackTrace();
@@ -53,5 +59,7 @@ public class DrawPanel extends JPanel{
         super.paintComponent(g);
         g.drawImage(volvoImage, (int) volvoPoint.getX(), (int) volvoPoint.getY(), null); // see javadoc for more info on the parameters
         g.drawImage(volvoWorkshopImage, (int) volvoWorkshopPoint.getX(), (int) volvoWorkshopPoint.getY(), null);
+        g.drawImage(saabImage, (int) saabPoint.getX(), (int) saabPoint.getY(), null); // see javadoc for more info on the parameters
+
     }
 }

@@ -30,6 +30,7 @@ public class CarController {
         CarController cc = new CarController();
 
         cc.cars.add(new Volvo240());
+        cc.cars.add(new Saab95());
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -43,37 +44,48 @@ public class CarController {
     * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-             for (Car car : cars) {
+
+            for (Car car : cars) {
+                int prevX = (int) Math.round(car.pos.getX());
+                int prevY = (int) Math.round(car.pos.getY());
                 car.move();
-                 if (car.pos.getX() < 0 || car.pos.getX() >  || pos.getY() < 0 || pos.getY() > PANEL_HEIGHT) {
-                     // If the car touches a wall, stop it, reverse its direction, and start it again
-                     stopEngine(); // Stop the engine
-                     direction = (direction + 2) % 4; // Reverse the direction
-                     startEngine(); // Start the engine again
-                     // Reset the position to the previous position
-                     pos.setLocation(prevX, prevY);
-                int x = (int) Math.round(car.pos.getX());
-                int y = (int) Math.round(car.pos.getY());
-                frame.drawPanel.moveit(x, y);
-                // repaint() calls the paintComponent method of the panel
-                frame.drawPanel.repaint();
+
+                if(car.pos.getX() < 0 || car.pos.getX() >= frame.getWidth() || car.pos.getY() < 0 || car.pos.getX() >= frame.getHeight()){
+                    car.direction = (car.direction + 2) % 4; // Reverse the direction
+                    frame.drawPanel.moveit(prevX, prevY);
+                }else {
+
+                    int x = (int) Math.round(car.pos.getX());
+                    int y = (int) Math.round(car.pos.getY());
+                    frame.drawPanel.moveit(x, y);
+                }
+                   // frame.drawPanel.moveit(x, y);
+                    // repaint() calls the paintComponent method of the panel
+                    frame.drawPanel.repaint();
+                }
             }
         }
-    }
 
-    // Calls the gas method for each car once
-    void gas(int amount) {
-        double gas = ((double) amount) / 100;
-         for (Car car : cars) {
-            car.gas(gas);
+        // Calls the gas method for each car once
+        void gas(int amount) {
+            double gas = ((double) amount) / 100;
+            for (Car car : cars) {
+                car.gas(gas);
+            }
         }
-    }
 
-    void brake(int amount) {
-        double brake = ((double) amount) / 100;
-        for (Car car : cars
-        ) {
-            car.brake(brake);
+        void brake(int amount) {
+            double brake = ((double) amount) / 100;
+            for (Car car : cars) {
+                car.brake(brake);
+            }
         }
-    }
+
+        void turboOn() {
+            for (Car car : cars) {
+                //if (car instanceof Saab95) {
+                    ((Saab95) car).setTurboOn();
+
+            }
+        }
 }
