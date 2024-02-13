@@ -118,5 +118,20 @@ public class CarController {
             }
         }
 
+        void startAll(){
+            for (Car car : cars) {
+                car.startEngine();
+            }
+
+
+        }
+
+        void stopAll(){
+            for (Car car : cars) {
+                car.stopEngine();
+            }
+
+        }
+
 
 }
