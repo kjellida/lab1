@@ -13,9 +13,13 @@ public class DrawPanel extends JPanel{
     BufferedImage volvoImage;
     // To keep track of a single car's position
     Point volvoPoint = new Point();
-
     Point saabPoint = new Point();
+
     BufferedImage saabImage;
+
+    BufferedImage scaniaImage;
+
+    Point scaniaPoint = new Point();
 
     BufferedImage volvoWorkshopImage;
     Point volvoWorkshopPoint = new Point(300,300);
@@ -26,6 +30,7 @@ public class DrawPanel extends JPanel{
        // volvoPoint.y = y;
         volvoPoint.setLocation(x,y);
         saabPoint.setLocation(x,y + 100);
+        scaniaPoint.setLocation(x, y +200);
 
     }
 
@@ -33,7 +38,7 @@ public class DrawPanel extends JPanel{
     public DrawPanel(int x, int y) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
-        this.setBackground(Color.green);
+        this.setBackground(Color.pink);
         // Print an error message in case file is not found with a try/catch block
         try {
             // You can remove the "pics" part if running outside of IntelliJ and
@@ -45,6 +50,8 @@ public class DrawPanel extends JPanel{
             volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
             volvoWorkshopImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/VolvoBrand.jpg"));
             saabImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg"));
+            scaniaImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg"));
+
         } catch (IOException ex)
         {
             ex.printStackTrace();
@@ -60,6 +67,8 @@ public class DrawPanel extends JPanel{
         g.drawImage(volvoImage, (int) volvoPoint.getX(), (int) volvoPoint.getY(), null); // see javadoc for more info on the parameters
         g.drawImage(volvoWorkshopImage, (int) volvoWorkshopPoint.getX(), (int) volvoWorkshopPoint.getY(), null);
         g.drawImage(saabImage, (int) saabPoint.getX(), (int) saabPoint.getY(), null); // see javadoc for more info on the parameters
+        g.drawImage(scaniaImage, (int) scaniaPoint.getX(), (int) scaniaPoint.getY(), null); // see javadoc for more info on the parameters
+
 
     }
 }
