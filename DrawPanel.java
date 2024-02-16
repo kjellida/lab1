@@ -31,15 +31,7 @@ public class DrawPanel extends JPanel{
     // TODO: Make this general for all cars
     void moveit(int x, int y, Car car) {
         Point newPosition = new Point(x, y);
-        carPositions.put(car, newPosition); // Update car's position
-
-        // Update image's position (if car has an associated image)
-        BufferedImage carImage = carImages.get(car);
-        if (carImage != null) {
-            carPositions.put(car, newPosition);
-
-            //carPositions.put(car, new Point(x,y));
-        }
+        carPositions.put(car, newPosition);
     }
 
     // Initializes the panel and reads the images
