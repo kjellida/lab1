@@ -8,8 +8,9 @@ public abstract class Car implements Movable {
     private final String modelName;
     protected Point pos = new Point(0, 0);
     protected int direction = 0;
-
     protected final int weight;
+
+   // protected boolean engineIsOn = false;
 
 
     public Car(int nrDoors, Color color, double enginePower, String modelName, int weight) {
@@ -44,15 +45,16 @@ public abstract class Car implements Movable {
 
     public void startEngine(){
         currentSpeed = 0.1;
+        //engineIsOn = true;
     }
 
     public void stopEngine(){
         currentSpeed = 0;
+        //engineIsOn = false;
     }
 
     protected void incrementSpeed(double amount) {
-        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
-
+            currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
     }
 
     protected void decrementSpeed(double amount) {
@@ -63,9 +65,9 @@ public abstract class Car implements Movable {
     }
 
     public void gas(double amount){
-        if(amount >= 0 && amount <= 1) {
+        if (amount >= 0 && amount <= 1 && getCurrentSpeed() >= 0.1) {
             incrementSpeed(amount);
-        }
+            }
     }
 
     public void brake(double amount) {

@@ -43,6 +43,7 @@ public class CarView extends JFrame{
     public CarView(String framename, CarController cc){
         this.carC = cc;
         initComponents(framename);
+
     }
 
     // Sets everything in place and fits everything

@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Map;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -23,15 +25,30 @@ public class CarController {
     // A list of cars, modify if needed
     ArrayList<Car> cars = new ArrayList<>();
 
+
+
+
+
     //methods:
 
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.cars.add(new Volvo240());
-        cc.cars.add(new Saab95());
-        cc.cars.add(new Scania());
+        Car volvo1 = new Volvo240();
+        volvo1.pos = new Point(0,0);
+
+        Car saab1 = new Saab95();
+        saab1.pos = new Point(0,100);
+
+        Car scania = new Scania();
+        scania.pos = new Point(0,200);
+
+        cc.cars.add(volvo1);
+        cc.cars.add(saab1);
+        cc.cars.add(scania);
+
+
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -45,24 +62,42 @@ public class CarController {
     * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
+            ArrayList<Car> carscopy = new ArrayList<>(cars);
 
-            for (Car car : cars) {
+            for (Car car : carscopy) {
+                frame.drawPanel.createImage(car);
+
                 int prevX = (int) Math.round(car.pos.getX());
                 int prevY = (int) Math.round(car.pos.getY());
                 car.move();
 
-                if(car.pos.getX() < 0 || car.pos.getX() >= frame.getWidth() || car.pos.getY() < 0 || car.pos.getX() >= frame.getHeight()){
-                    car.direction = (car.direction + 2) % 4; // Reverse the direction
-                    frame.drawPanel.moveit(prevX, prevY);
+                if(car.pos.getX() < 0 || car.pos.getX() >= frame.getWidth() || car.pos.getY() < 0 ||car.pos.getX() >= frame.getHeight()){
+                   double speed = car.getCurrentSpeed();
+                    car.stopEngine();
+                    car.turnLeft();
+                    car.turnLeft();
+                    car.startEngine();
+                    car.currentSpeed = speed;
+                    frame.drawPanel.moveit(prevX, prevY, car);
                 }else {
 
                     int x = (int) Math.round(car.pos.getX());
                     int y = (int) Math.round(car.pos.getY());
-                    frame.drawPanel.moveit(x, y);
+                    frame.drawPanel.moveit(x, y, car);
+
+
                 }
-                   // frame.drawPanel.moveit(x, y);
-                    // repaint() calls the paintComponent method of the panel
-                    frame.drawPanel.repaint();
+
+                   frame.drawPanel.repaint();
+
+
+             if(car instanceof Volvo240 && frame.drawPanel.workshop.isWithinWorkshopRadius(car.pos,frame.drawPanel.workshop.location, 10)){
+                    frame.drawPanel.addToCarShop(car);
+                    cars.remove(car);
+                }
+                frame.drawPanel.repaint();
+
+
                 }
             }
         }
@@ -101,13 +136,14 @@ public class CarController {
 
 
         void liftBed(){
-            for (Car car : cars) {
+        for (Car car : cars) {
                 if (car instanceof Scania) {
                     ((Scania) car).raisePlatform();
                 }
             }
-
         }
+
+
 
 
         void lowerBed(){
@@ -132,6 +168,8 @@ public class CarController {
             }
 
         }
+
+
 
 
 }

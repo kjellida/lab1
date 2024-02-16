@@ -8,8 +8,6 @@ public class main {
         System.out.print(a);
 
 
-        CarShop <Volvo240> volvoWorkshop = new CarShop<>(10);
-
 
 
     }

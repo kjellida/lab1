@@ -9,7 +9,7 @@ class CarShopTest {
 
     @BeforeEach
     public void init(){
-        saabCarShop= new CarShop<>(10);
+        saabCarShop= new CarShop<>(10, new Point(200,200));
 
     }
 // hello
