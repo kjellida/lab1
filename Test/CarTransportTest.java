@@ -30,12 +30,12 @@ class CarTransportTest {
         Scania scania = new Scania();
         carTransport.loadCartransport(scania);
 
-        assertFalse(carTransport.carStack.contains(scania));
+        assertFalse(carTransport.loading.carStack.contains(scania));
 
         Car saab = new Saab95();
         carTransport.loadCartransport(saab);
 
-        assertTrue(carTransport.carStack.contains(saab));
+        assertTrue(carTransport.loading.carStack.contains(saab));
 
     }
 
@@ -45,7 +45,7 @@ class CarTransportTest {
         carTransport.loadCartransport(saab);
         carTransport.unloadCartransport();
 
-        assertFalse(carTransport.carStack.contains(saab));
+        assertFalse(carTransport.loading.carStack.contains(saab));
 
         double x = carTransport.pos.getX() + 1;
         double y = carTransport.pos.getY() + 1;

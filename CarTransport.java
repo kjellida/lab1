@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CarTransport extends Car implements HasPlatform{
     protected PlatformTwoStates platform;
-    protected Deque<Car> carStack = new ArrayDeque<>();
+    protected Loading loading;
     protected final int maxCarsOnPlatform = 6;
     protected final int maxCarWeight = 200;
 
@@ -14,6 +14,7 @@ public class CarTransport extends Car implements HasPlatform{
         super(2, Color.blue,200, "CarTransport", 500);
         platform = new PlatformTwoStates();
         platform.platformRaised = false;
+        loading = new Loading();
         stopEngine();
     }
 
@@ -34,15 +35,15 @@ public class CarTransport extends Car implements HasPlatform{
     }
 
     public void loadCartransport(Car car){
-        if (carStack.size() < maxCarsOnPlatform && !platform.platformRaised && car.weight < maxCarWeight && checkPos(car) < 1){
-            carStack.push(car);
+        if (loading.carStack.size() < maxCarsOnPlatform && !platform.platformRaised && car.weight < maxCarWeight && checkPos(car) < 1){
+            loading.load(car); //ta bort car car?
 
         }
     }
 
     public void unloadCartransport(){
-        if(!platform.platformRaised && !carStack.isEmpty()){
-           Car car = carStack.pop();
+        if(!platform.platformRaised && !loading.carStack.isEmpty()){
+           Car car = loading.unload();
            car.pos.setLocation(this.pos.getX() + 1,this.pos.getY() + 1);
 
 
@@ -63,7 +64,7 @@ public class CarTransport extends Car implements HasPlatform{
     @Override
     public void move() {
         super.move();
-        for(Car car : carStack){
+        for(Car car : loading.carStack){
             car.pos = this.pos;
         }
 

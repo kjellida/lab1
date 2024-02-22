@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageProducer;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import javax.swing.*;
 // This panel represents the animated part of the view with the car images.
 
 public class DrawPanel extends JPanel{
-    HashMap<Car, BufferedImage> carImages = new HashMap<Car, BufferedImage>();
+    /*HashMap<Car, BufferedImage> carImages = new HashMap<Car, BufferedImage>();
     HashMap<Car, Point> carPositions = new HashMap<Car, Point>();
     BufferedImage volvoWorkshopImage;
 
@@ -25,13 +26,19 @@ public class DrawPanel extends JPanel{
     Point volvoWorkshopPoint = new Point(500,0);
 
 
+*/
+/*
+    HashMap<Car, Point> carPositions = new HashMap<Car, Point>();
 
+    CarShop<Car> workshop = new CarShop<>(4,new Point(500,0));
+
+    DrawImage d = new DrawImage();
 
 
     // TODO: Make this general for all cars
     void moveit(int x, int y, Car car) {
         Point newPosition = new Point(x, y);
-        carPositions.put(car, newPosition);
+        d.carPositions.put(car, newPosition);
     }
 
     // Initializes the panel and reads the images
@@ -42,7 +49,7 @@ public class DrawPanel extends JPanel{
 
     }
 
-    public void createImage(Car car) {
+   /* public void createImage(Car car) {
         try {
             if (car instanceof Volvo240) {
                 carImages.put(car, ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg")));
@@ -61,27 +68,63 @@ public class DrawPanel extends JPanel{
         } catch (IOException ex) {
         }
     }
-
+*/
     // This method is called each time the panel updates/refreshes/repaints itself
     // TODO: Change to suit your needs.
+/*
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (Car car : carImages.keySet()) {
-            Point carPoint = carPositions.get(car);
-            BufferedImage carImage = carImages.get(car);
+        for (Car car : d.carImages.keySet()) {
+            Point carPoint = d.carPositions.get(car);
+            BufferedImage carImage = d.carImages.get(car);
             if(carPoint != null && carImage != null) {
                 g.drawImage(carImage, (int)carPoint.getX(), (int) carPoint.getY(), null);
             }
         }
-        g.drawImage(volvoWorkshopImage, (int)volvoWorkshopPoint.getX(), (int)volvoWorkshopPoint.getY(), null);
-    }
+        g.drawImage(d.volvoWorkshopImage, (int)d.volvoWorkshopPoint.getX(), (int)d.volvoWorkshopPoint.getY(), null);
+}
 
     void addToCarShop(Car car) {
             workshop.addCar(car);
-            carImages.remove(car);
-            carPositions.remove(car);
+           // carImages.remove(car);
+          //  carPositions.remove(car);
 
+    }
+*/
+    HashMap<Car, Point> carPositions = new HashMap<>();
+    DrawImage drawImage = new DrawImage();
+    CarShop<Car> workshop = new CarShop<>(4, new Point(500, 0));
+
+    public DrawPanel(int x, int y) {
+        this.setDoubleBuffered(true);
+        this.setPreferredSize(new Dimension(x, y));
+        this.setBackground(Color.pink);
+    }
+
+    public void createImage(Car car) {
+        Point position = new Point(0, 0); // Default position
+        carPositions.put(car, position);
+    }
+
+    void moveit(int x, int y, Car car) {
+        Point newPosition = new Point(x, y);
+        carPositions.put(car, newPosition);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        for (Car car : carPositions.keySet()) {
+            Point position = carPositions.get(car);
+            drawImage.drawCar(g, car, position);
+        }
+        drawImage.drawWorkshop(g, new Point(500, 0));
+    }
+
+    void addToCarShop(Car car) {
+        workshop.addCar(car);
+        carPositions.remove(car);
     }
 
 
