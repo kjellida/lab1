@@ -6,6 +6,10 @@ import java.awt.image.ImageProducer;
 import java.util.ArrayList;
 import java.util.Map;
 
+
+
+
+
 /*
 * This class represents the Controller part in the MVC pattern.
 * It's responsibilities is to listen to the View and responds in a appropriate manner by
@@ -26,6 +30,8 @@ public class CarController {
 
     // A list of cars, modify if needed
     ArrayList<Car> cars = new ArrayList<>();
+
+
 
 
 
@@ -178,7 +184,141 @@ public class CarController {
 
         }
 
+        /*
 
+
+        gasButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            carC.gas(gasAmount);
+        }
+    });
+    //controlPanel.add(brakeButton, 3);
+        brakeButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            carC.brake(gasAmount); // Call the brake method in the CarController
+        }
+    });
+
+        turboOnButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            carC.turboOn();
+
+        }
+    });
+
+        turboOffButton.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            carC.turboOff();
+
+        }
+    });
+
+       liftBedButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            carC.liftBed();
+        }
+    });
+
+        lowerBedButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            carC.lowerBed();
+        }
+    });
+
+        stopButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            carC.stopAll();
+        }
+
+    });
+
+        startButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            carC.startAll();
+        }
+
+    });
+    */
+/*
+    public ActionListener createGasActionListener(int gasAmount) {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gas(gasAmount);
+            }
+        };
+    }
+
+    public ActionListener createBrakeActionListener(int brakeAmount) {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                brake(brakeAmount);
+            }
+        };
+    }
+
+    public ActionListener createTurboOnActionListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                turboOn();
+            }
+        };
+    }
+
+    public ActionListener createTurboOffActionListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                turboOff();
+            }
+        };
+    }
+
+    public ActionListener createLiftBedActionListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                liftBed();
+            }
+        };
+    }
+
+    public ActionListener createLowerBedActionListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lowerBed();
+            }
+        };
+    }
+
+    public ActionListener createStartAllActionListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startAll();
+            }
+        };
+    }
+
+    public ActionListener createStopAllActionListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                stopAll();
+            }
+        };
+    }
+
+*/
 
 
 }

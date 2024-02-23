@@ -122,7 +122,7 @@ public class DrawPanel extends JPanel{
         drawImage.drawWorkshop(g, new Point(500, 0));
     }
 
-    void addToCarShop(Car car) {
+    void addToCarShop(Car car) {  //removeImage
         workshop.addCar(car);
         carPositions.remove(car);
     }
