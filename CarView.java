@@ -109,18 +109,6 @@ public class CarView extends JFrame{
 
 
 
-        gasButton.addActionListener(carC.createGasActionListener(gasAmount));
-        brakeButton.addActionListener(carC.createBrakeActionListener(gasAmount));
-        turboOnButton.addActionListener(carC.createTurboOnActionListener());
-        turboOffButton.addActionListener(carC.createTurboOffActionListener());
-        liftBedButton.addActionListener(carC.createLiftBedActionListener());
-        lowerBedButton.addActionListener(carC.createLowerBedActionListener());
-        startButton.addActionListener(carC.createStartAllActionListener());
-        stopButton.addActionListener(carC.createStopAllActionListener());
-
-
-
-
 
 
 
@@ -132,7 +120,7 @@ public class CarView extends JFrame{
                 carC.gas(gasAmount);
             }
         });
-        //controlPanel.add(brakeButton, 3);
+
         brakeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -265,8 +253,10 @@ public class CarView extends JFrame{
 */
 
 
-    private CarController carController;
+    //private CarController carController;
     private JPanel controlPanel;
+
+    private CarControl carControl;
 
     DrawPanel drawPanel;
 
@@ -274,9 +264,11 @@ public class CarView extends JFrame{
     private static final int X = 800;
     private static final int Y = 800;
 
-    public CarView(String frameName, CarController carController) {
-        this.carController = carController;
+    public CarView(String frameName, CarControl carControl) {
+      //  this.carController = carController;
+        this.carControl = carControl;
         initComponents(frameName);
+
     }
 
     private void initComponents(String title) {
@@ -290,12 +282,17 @@ public class CarView extends JFrame{
         this.add(drawPanel);
 
         // Initialize and add control panel
-        controlPanel = new GUI(carController).createControlPanel();
-        add(controlPanel);
+       // controlPanel = new GUI(carController).createControlPanel();
 
-        controlPanel.setPreferredSize(new Dimension((X/2)+4, 200));
+        controlPanel = new ControlPanel(carControl).createControlPanel();
+
+
+        //controlPanel.setPreferredSize(new Dimension( (X/2)+4, 200)); // kan sätta x som X
         this.add(controlPanel);
-        controlPanel.setBackground(Color.CYAN);
+
+        //controlPanel.setBackground(Color.CYAN);
+
+        //controlPanel.setLayout(new GridLayout(2,4)); // vet inte om här eller GUI
 
 
         this.pack();

@@ -4,7 +4,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class GUI {
+public class ControlPanel {
 
    /* private CarController carC;
 
@@ -225,15 +225,23 @@ public class GUI {
 
 
 
-    private CarController carController;
+   // private CarController carController;
 
-    public GUI(CarController carController) {
+    private CarControl carControl;
+
+    /*public GUI(CarController carController) {
         this.carController = carController;
+    }*/
+
+    public ControlPanel(CarControl carControl) {
+        this.carControl = carControl;
     }
 
 
     public JPanel createControlPanel() {
-        JPanel controlPanel = new JPanel(new GridLayout(2, 4));
+
+
+        JPanel controlPanel = new JPanel();
         JPanel gasPanel = new JPanel();
 
         JLabel gasLabel = new JLabel("Amount of gas");
@@ -247,7 +255,7 @@ public class GUI {
 
 
         // Create buttons
-        JButton gasButton = createButton("Gas", e -> carController.gas(gasAmount));
+     /*   JButton gasButton = createButton("Gas", e -> carController.gas(gasAmount));
         JButton brakeButton = createButton("Brake", e -> carController.brake(gasAmount));
         JButton turboOnButton = createButton("Saab Turbo on", e -> carController.turboOn());
         JButton turboOffButton = createButton("Saab Turbo off", e -> carController.turboOff());
@@ -255,16 +263,43 @@ public class GUI {
         JButton lowerBedButton = createButton("Lower Lift Bed", e -> carController.lowerBed());
         JButton startButton = createButton("Start all", e -> carController.startAll());
         JButton stopButton = createButton("Stop all", e -> carController.stopAll());
+*/
+
+        JButton gasButton = createButton("Gas", e -> carControl.gas(gasAmount));
+        JButton brakeButton = createButton("Brake", e -> carControl.brake(gasAmount));
+        JButton turboOnButton = createButton("Saab Turbo on", e -> carControl.turboOn());
+        JButton turboOffButton = createButton("Saab Turbo off", e -> carControl.turboOff());
+        JButton liftBedButton = createButton("Scania Lift Bed", e -> carControl.liftBed());
+        JButton lowerBedButton = createButton("Lower Lift Bed", e -> carControl.lowerBed());
+        JButton startButton = createButton("Start all", e -> carControl.startAll());
+        JButton stopButton = createButton("Stop all", e -> carControl.stopAll());
 
 
 
+        JPanel buttonPanel = new JPanel(new GridLayout(2, 4)); // Adjust the number of rows and columns as needed
+        buttonPanel.add(gasButton,0);
+        buttonPanel.add(turboOnButton, 1);
+        buttonPanel.add(liftBedButton, 2);
+        buttonPanel.add(brakeButton, 3);
+        buttonPanel.add(turboOffButton, 4);
+        buttonPanel.add(lowerBedButton, 5);
+        //buttonPanel.add(startButton);
+        //buttonPanel.add(stopButton);
+        buttonPanel.setPreferredSize(new Dimension( (X/2)+4, 200));
+        buttonPanel.setBackground(Color.CYAN);
+
+        /*controlPanel.add(buttonPanel, BorderLayout.CENTER);
         // Add components to control panel
         controlPanel.add(gasButton, 0);
         controlPanel.add(turboOnButton, 1);
         controlPanel.add(liftBedButton, 2);
         controlPanel.add(brakeButton, 3);
         controlPanel.add(turboOffButton, 4);
-        controlPanel.add(lowerBedButton, 5);
+        controlPanel.add(lowerBedButton, 5);*/
+
+        controlPanel.add(buttonPanel);
+
+
 
         startButton.setBackground(Color.blue);
         startButton.setForeground(Color.green);
@@ -278,7 +313,9 @@ public class GUI {
 
 
 
-        // Add gasSpinner to the control panel
+
+
+
 
         return controlPanel;
     }
@@ -296,6 +333,8 @@ public class GUI {
                         100, //max
                         1);//step
         JSpinner gasSpinner = new JSpinner(spinnerModel);
+
+
         gasSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 gasAmount = (int) ((JSpinner) e.getSource()).getValue();

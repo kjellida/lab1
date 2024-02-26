@@ -16,7 +16,7 @@ import java.util.Map;
 * modifying the model state and the updating the view.
  */
 
-public class CarController {
+public class CarController implements CarControl{
     // member fields:
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
@@ -118,21 +118,22 @@ public class CarController {
         }*/
 
         // Calls the gas method for each car once
-        void gas(int amount) {
+
+        public void gas(int amount) {
             double gas = ((double) amount) / 100;
             for (Car car : cars) {
                 car.gas(gas);
             }
         }
 
-        void brake(int amount) {
+        public void brake(int amount) {
             double brake = ((double) amount) / 100;
             for (Car car : cars) {
                 car.brake(brake);
             }
         }
 
-        void turboOn() {
+        public void turboOn() {
             for (Car car : cars) {
                 if (car instanceof Saab95) {
                     ((Saab95) car).setTurboOn();
@@ -141,7 +142,7 @@ public class CarController {
 
         }
 
-        void turboOff() {
+       public void turboOff() {
             for (Car car : cars) {
                 if (car instanceof Saab95) {
                     ((Saab95) car).setTurboOff();
@@ -150,7 +151,7 @@ public class CarController {
         }
 
 
-        void liftBed(){
+        public void liftBed(){
         for (Car car : cars) {
                 if (car instanceof Scania) {
                     ((Scania) car).raisePlatform();
@@ -161,7 +162,7 @@ public class CarController {
 
 
 
-        void lowerBed(){
+        public void lowerBed(){
             for (Car car : cars) {
                 if (car instanceof Scania) {
                     ((Scania) car).lowerPlatform();
@@ -169,7 +170,7 @@ public class CarController {
             }
         }
 
-        void startAll(){
+        public void startAll(){
             for (Car car : cars) {
                 car.startEngine();
             }
@@ -177,148 +178,12 @@ public class CarController {
 
         }
 
-        void stopAll(){
+        public void stopAll(){
             for (Car car : cars) {
                 car.stopEngine();
             }
 
         }
-
-        /*
-
-
-        gasButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            carC.gas(gasAmount);
-        }
-    });
-    //controlPanel.add(brakeButton, 3);
-        brakeButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            carC.brake(gasAmount); // Call the brake method in the CarController
-        }
-    });
-
-        turboOnButton.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-            carC.turboOn();
-
-        }
-    });
-
-        turboOffButton.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-            carC.turboOff();
-
-        }
-    });
-
-       liftBedButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            carC.liftBed();
-        }
-    });
-
-        lowerBedButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            carC.lowerBed();
-        }
-    });
-
-        stopButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            carC.stopAll();
-        }
-
-    });
-
-        startButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            carC.startAll();
-        }
-
-    });
-    */
-/*
-    public ActionListener createGasActionListener(int gasAmount) {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gas(gasAmount);
-            }
-        };
-    }
-
-    public ActionListener createBrakeActionListener(int brakeAmount) {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                brake(brakeAmount);
-            }
-        };
-    }
-
-    public ActionListener createTurboOnActionListener() {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                turboOn();
-            }
-        };
-    }
-
-    public ActionListener createTurboOffActionListener() {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                turboOff();
-            }
-        };
-    }
-
-    public ActionListener createLiftBedActionListener() {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                liftBed();
-            }
-        };
-    }
-
-    public ActionListener createLowerBedActionListener() {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                lowerBed();
-            }
-        };
-    }
-
-    public ActionListener createStartAllActionListener() {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                startAll();
-            }
-        };
-    }
-
-    public ActionListener createStopAllActionListener() {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                stopAll();
-            }
-        };
-    }
-
-*/
 
 
 }
