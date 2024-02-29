@@ -6,52 +6,6 @@ import java.util.HashMap;
 
 public class DrawImage {
 
-  /*  HashMap<Car, BufferedImage> carImages = new HashMap<Car, BufferedImage>();
-    HashMap<Car, Point> carPositions = new HashMap<Car, Point>();
-    BufferedImage volvoWorkshopImage;
-
-    // To keep track of a single car's position
-    Point volvoPoint = new Point(0,0);
-    Point saabPoint = new Point(0,100);
-    Point scaniaPoint = new Point(0, 200);
-    Point volvoWorkshopPoint = new Point(500,0);
-
-    public DrawImage(){
-
-    }
-
-    public void createImage(Car car) {
-        try {
-            if (car instanceof Volvo240) {
-                carImages.put(car, ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg")));
-                carPositions.put(car, volvoPoint);
-            } else if (car instanceof Saab95) {
-                carImages.put(car, ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg")));
-                carPositions.put(car, saabPoint);
-            } else if (car instanceof Scania) {
-                carImages.put(car, ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg")));
-                carPositions.put(car, scaniaPoint);
-            }
-
-
-            volvoWorkshopImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/VolvoBrand.jpg"));
-            // Update the car's initial position
-        } catch (IOException ex) {
-        }
-    }
-
-
-    protected void paintC(Graphics g) {
-        for (Car car : carImages.keySet()) {
-            Point carPoint = carPositions.get(car);
-            BufferedImage carImage = carImages.get(car);
-            if(carPoint != null && carImage != null) {
-                g.drawImage(carImage, (int)carPoint.getX(), (int) carPoint.getY(), null);
-            }
-        }
-        g.drawImage(volvoWorkshopImage, (int)volvoWorkshopPoint.getX(), (int)volvoWorkshopPoint.getY(), null);
-    }*/
-
     private BufferedImage volvoImage;
     private BufferedImage saabImage;
     private BufferedImage scaniaImage;
@@ -89,5 +43,4 @@ public class DrawImage {
         }
     }
 
-    //
 }

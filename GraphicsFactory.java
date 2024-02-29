@@ -1,10 +1,10 @@
 public class GraphicsFactory {
 
-    static CarController createCarController(){
-        return new CarController();
+    static CarModel createCarModel(){
+        return new CarModel();
     }
 
-    static CarView createCarView(String framename, CarController cc){
+    static CarView createCarView(String framename, CarModel cc){
         return new CarView(framename, cc);
     }
 

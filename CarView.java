@@ -1,9 +1,5 @@
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -14,258 +10,16 @@ import java.awt.event.ActionListener;
  **/
 
 public class CarView extends JFrame{
- /*   private static final int X = 800;
-    private static final int Y = 800;
-
-    // The controller member
-    CarController carC;
-
-
-    //DrawPanel drawPanel = new DrawPanel(X, Y-240);
-    DrawPanel drawPanel = GraphicsFactory.createDrawPanel(X, Y-240);
-
-
-    JPanel controlPanel = new JPanel();
-
-    JPanel gasPanel = new JPanel();
-    JSpinner gasSpinner = new JSpinner();
-    int gasAmount = 0;
-    JLabel gasLabel = new JLabel("Amount of gas");
-
-    JButton gasButton = new JButton("Gas");
-    JButton brakeButton = new JButton("Brake");
-    JButton turboOnButton = new JButton("Saab Turbo on");
-    JButton turboOffButton = new JButton("Saab Turbo off");
-    JButton liftBedButton = new JButton("Scania Lift Bed");
-    JButton lowerBedButton = new JButton("Lower Lift Bed");
-
-    JButton startButton = new JButton("Start all cars");
-    JButton stopButton = new JButton("Stop all cars");
-
-
-
-
-    // Constructor
-    public CarView(String framename , CarController cc){
-        this.carC = cc;
-        initComponents(framename);
-
-    }
-
-    // Sets everything in place and fits everything
-    // TODO: Take a good look and make sure you understand how these methods and components work
-    private void initComponents(String title) {
-
-        this.setTitle(title);
-        this.setPreferredSize(new Dimension(X,Y));
-        this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-
-        this.add(drawPanel);
-
-
-
-        SpinnerModel spinnerModel =
-                new SpinnerNumberModel(0, //initial value
-                        0, //min
-                        100, //max
-                        1);//step
-        gasSpinner = new JSpinner(spinnerModel);
-        gasSpinner.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                gasAmount = (int) ((JSpinner)e.getSource()).getValue();
-            }
-        });
-
-        gasPanel.setLayout(new BorderLayout());
-        gasPanel.add(gasLabel, BorderLayout.PAGE_START);
-        gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
-
-        this.add(gasPanel);
-
-        controlPanel.setLayout(new GridLayout(2,4));
-
-        controlPanel.add(gasButton, 0);
-        controlPanel.add(turboOnButton, 1);
-        controlPanel.add(liftBedButton, 2);
-        controlPanel.add(brakeButton, 3);
-        controlPanel.add(turboOffButton, 4);
-        controlPanel.add(lowerBedButton, 5);
-        controlPanel.setPreferredSize(new Dimension((X/2)+4, 200));
-        this.add(controlPanel);
-        controlPanel.setBackground(Color.CYAN);
-
-
-        startButton.setBackground(Color.blue);
-        startButton.setForeground(Color.green);
-        startButton.setPreferredSize(new Dimension(X/5-15,200));
-        this.add(startButton);
-
-
-        stopButton.setBackground(Color.red);
-        stopButton.setForeground(Color.black);
-        stopButton.setPreferredSize(new Dimension(X/5-15,200));
-        this.add(stopButton);
-
-
-
-
-
-
-
-        // This actionListener is for the gas button only
-        // TODO: Create more for each component as necessary
-       /* gasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.gas(gasAmount);
-            }
-        });
-
-        brakeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.brake(gasAmount); // Call the brake method in the CarController
-            }
-        });
-
-        turboOnButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                carC.turboOn();
-
-            }
-            });
-
-        turboOffButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                carC.turboOff();
-
-            }
-        });
-
-       liftBedButton.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               carC.liftBed();
-           }
-       });
-
-        lowerBedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.lowerBed();
-            }
-        });
-
-        stopButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.stopAll();
-            }
-
-        });
-
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carC.startAll();
-            }
-
-        });
-
-*/
-
-
-
-
-
-        // Make the frame pack all it's components by respecting the sizes if possible.
-      /*  this.pack();
-
-        // Get the computer screen resolution
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        // Center the frame
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        // Make the frame visible
-        this.setVisible(true);
-        // Make sure the frame exits when "x" is pressed
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }*/
-/*
-   private CarController carC;
-
-    // Components created by GUIBuilder
-     DrawPanel drawPanel;
     private JPanel controlPanel;
-    private JButton gasButton;
-    private JButton brakeButton;
-    private JButton turboOnButton;
-    private JButton turboOffButton;
-    private JButton liftBedButton;
-    private JButton lowerBedButton;
-    private JButton startButton;
-    private JButton stopButton;
-
-    public CarView(String framename, CarController cc) {
-        this.carC = cc;
-        initComponents(framename);
-        createUI();
-    }
-
-    private void initComponents(String title) {
-        this.setTitle(title);
-        this.setPreferredSize(new Dimension(800, 800));
-        this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-
-
-        this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // Other initialization...
-    }
-
-    private void createUI() {
-        GUI builder = new GUI(carC);
-        drawPanel = builder.createDrawPanel();
-        controlPanel = builder.createControlPanel();
-        gasButton = builder.createGasButton();
-        brakeButton = builder.createBrakeButton();
-        turboOnButton = builder.createTurboOnButton();
-        turboOffButton = builder.createTurboOffButton();
-        liftBedButton = builder.createLiftBedButton();
-        lowerBedButton = builder.createLowerBedButton();
-        startButton = builder.createStartButton();
-        stopButton = builder.createStopButton();
-
-        this.add(drawPanel);
-        this.add(controlPanel);
-        this.add(startButton);
-        this.add(stopButton);
-        this.pack();
-
-
-
-
-
-
-    }
-*/
-
-
-    //private CarController carController;
-    private JPanel controlPanel;
-
-    private CarControl carControl;
+    private ActionObserver carControl;
 
     DrawPanel drawPanel;
-
 
     private static final int X = 800;
     private static final int Y = 800;
 
-    public CarView(String frameName, CarControl carControl) {
-      //  this.carController = carController;
+
+    public CarView(String frameName, ActionObserver carControl) {
         this.carControl = carControl;
         initComponents(frameName);
 
@@ -281,19 +35,9 @@ public class CarView extends JFrame{
         drawPanel = GraphicsFactory.createDrawPanel(X, Y-240);
         this.add(drawPanel);
 
-        // Initialize and add control panel
-       // controlPanel = new GUI(carController).createControlPanel();
+        controlPanel = new ControlPanel(carControl).createControlPanel(X);
 
-        controlPanel = new ControlPanel(carControl).createControlPanel();
-
-
-        //controlPanel.setPreferredSize(new Dimension( (X/2)+4, 200)); // kan sätta x som X
         this.add(controlPanel);
-
-        //controlPanel.setBackground(Color.CYAN);
-
-        //controlPanel.setLayout(new GridLayout(2,4)); // vet inte om här eller GUI
-
 
         this.pack();
 

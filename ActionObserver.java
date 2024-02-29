@@ -1,4 +1,4 @@
-public interface CarControl {
+public interface ActionObserver {
         void gas(int amount);
         void brake(int amount);
         void turboOn();
@@ -7,5 +7,7 @@ public interface CarControl {
         void lowerBed();
         void startAll();
         void stopAll();
+        void addCar();
+        void removeCar();
 
 }
