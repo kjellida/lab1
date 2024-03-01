@@ -3,7 +3,6 @@ import java.util.List;
 
 public class CarModel implements ActionObserver {
     ArrayList<Car> cars = new ArrayList<>();
-
     ArrayList<CarObserver> observers = new ArrayList<>();
 
 
@@ -86,9 +85,6 @@ public class CarModel implements ActionObserver {
         observers.add(observer);
     }
 
-    public void removeObserver(CarObserver observer) {
-        observers.remove(observer);
-    }
 
     public void notifyCarRemoved(Car removedCar) {
         for (CarObserver observer : observers) {

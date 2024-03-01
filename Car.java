@@ -44,8 +44,10 @@ public abstract class Car implements Movable {
     }
 
     public void startEngine(){
-        currentSpeed = 0.1;
-        //engineIsOn = true;
+        if(currentSpeed == 0) {
+            currentSpeed = 0.1;
+            //engineIsOn = true;
+        }
     }
 
     public void stopEngine(){

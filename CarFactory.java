@@ -24,9 +24,9 @@ public class CarFactory {
     private static final Random random = new Random();
 
     static Car createRandomCar() {
-        int randomCarType = random.nextInt(3); // Assuming 3 types of cars: Volvo240, Saab95, Scania
-        int randomX = random.nextInt(500 ); // Generate random x-coordinate within simulation area
-        int randomY = random.nextInt(500); // Generate random y-coordinate within simulation area
+        int randomCarType = random.nextInt(3);
+        int randomX = random.nextInt(500 );  // gör att den tar in värdet iställer, mer generellt
+        int randomY = random.nextInt(500);
 
         Car car;
         switch (randomCarType) {
@@ -45,12 +45,5 @@ public class CarFactory {
 
         return car;
     }
-
-
-
-
-
-
-
 
 }

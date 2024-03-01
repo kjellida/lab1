@@ -50,10 +50,8 @@ public class CarController {
 
                     frame.drawPanel.repaint();
 
-                    // Remove car if it enters the workshop
-                   // if (car instanceof Volvo240 && carShop.isWithinWorkshopRadius(car.pos, frame.drawPanel.workshop.location, 10)) {
-// göra en getworkshop metod
-                   if (car instanceof Volvo240 && frame.drawPanel.workshop.isWithinWorkshopRadius(car.pos, frame.drawPanel.workshop.location, 10)) {
+
+                   if (car instanceof Volvo240 && frame.drawPanel.workshop.isWithinWorkshopRadius(car.pos, frame.drawPanel.workshop.location, 50)) {
                         frame.drawPanel.addToCarShop(car);
                         cars.remove(car);
                     }

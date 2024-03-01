@@ -33,7 +33,9 @@ public class Scania extends Car implements HasPlatform{
     @Override
      public void startEngine(){
         if(platform.getPlatformAngle() == 0) {
-            currentSpeed = 0.1;
+            if (currentSpeed == 0) {
+                currentSpeed = 0.1;
+            }
         }
     }
 

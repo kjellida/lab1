@@ -27,6 +27,7 @@ public class CarView extends JFrame{
 
 
 
+
     private void initComponents(String title) {
 
         setTitle(title);

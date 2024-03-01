@@ -14,9 +14,7 @@ import javax.swing.*;
 public class DrawPanel extends JPanel implements CarObserver{
     HashMap<Car, Point> carPositions = new HashMap<>();
     DrawImage drawImage = new DrawImage();
-
-    //CarShop<Car> workshop;
-    CarShop<Car> workshop = new CarShop<>(4, new Point(500, 0));
+    CarShop<Car> workshop = CarShopFactory.createCarshop(4, new Point(500, 0));
 
     public DrawPanel(int x, int y) {
         this.setDoubleBuffered(true);
@@ -44,7 +42,7 @@ public class DrawPanel extends JPanel implements CarObserver{
         drawImage.drawWorkshop(g, new Point(500, 0));
     }
 
-    void addToCarShop(Car car) {  //removeImage
+    void addToCarShop(Car car) {  //tar hand om workshop, kanske inte här?
         workshop.addCar(car);
         carPositions.remove(car);
     }
