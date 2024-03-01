@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class ControlPanel {
-    int gasAmount = 0;
+    private int gasAmount = 0;
     private ActionObserver carControl;
 
     public ControlPanel(ActionObserver carControl) {
@@ -35,8 +35,8 @@ public class ControlPanel {
         JButton lowerBedButton = createButton("Lower Lift Bed", e -> carControl.lowerBed());
         JButton startButton = createButton("Start all", e -> carControl.startAll());
         JButton stopButton = createButton("Stop all", e -> carControl.stopAll());
-        JButton addCar = createButton("Add car", e -> carControl.addCar()); // ny
-        //JButton removeCar = createButton("Remove car", e -> carControl.removeCar());
+        JButton addCarButton = createButton("Add car", e -> carControl.addCar()); // ny
+        JButton removeCarButton = createButton("Remove car", e -> carControl.removeCar());
 
 
 
@@ -47,8 +47,8 @@ public class ControlPanel {
         buttonPanel.add(brakeButton, 3);
         buttonPanel.add(turboOffButton, 4);
         buttonPanel.add(lowerBedButton, 5);
-        buttonPanel.add(addCar, 6); // ny
-        //buttonPanel.add(removeCar, 7);
+        buttonPanel.add(addCarButton, 6); // ny
+        buttonPanel.add(removeCarButton, 7);
 
         buttonPanel.setPreferredSize(new Dimension( (X/2)+4, 200));
         buttonPanel.setBackground(Color.CYAN);

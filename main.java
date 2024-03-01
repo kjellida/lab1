@@ -9,8 +9,9 @@ public class main {
         cc.cars.add(CarFactory.createVolvo(new Point(0, 0)));
         cc.cars.add(CarFactory.createSaab(new Point(0, 100)));
         cc.cars.add(CarFactory.createScania(new Point(0, 200)));
-       // CarShopFactory.createCarshop(4, new Point(500, 0));
+        CarShopFactory.createCarshop(4, new Point(500, 0));
 
+        cc.addObserver(frame.drawPanel); // inte nå drawpanel på det viset
 
 
         CarController carController = new CarController(frame, cc.cars);

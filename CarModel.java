@@ -1,21 +1,13 @@
 import java.util.ArrayList;
-
-
-
-
-
-/*
-* This class represents the Controller part in the MVC pattern.
-* It's responsibilities is to listen to the View and responds in a appropriate manner by
-* modifying the model state and the updating the view.
- */
+import java.util.List;
 
 public class CarModel implements ActionObserver {
     ArrayList<Car> cars = new ArrayList<>();
 
-        // Calls the gas method for each car once
+    ArrayList<CarObserver> observers = new ArrayList<>();
 
-        public void gas(int amount) {
+
+    public void gas(int amount) {
             double gas = ((double) amount) / 100;
             for (Car car : cars) {
                 car.gas(gas);
@@ -89,11 +81,29 @@ public class CarModel implements ActionObserver {
 
         }
 
-        public void removeCar(){
-             cars.removeFirst();
 
+    public void addObserver(CarObserver observer) {
+        observers.add(observer);
+    }
 
+    public void removeObserver(CarObserver observer) {
+        observers.remove(observer);
+    }
+
+    public void notifyCarRemoved(Car removedCar) {
+        for (CarObserver observer : observers) {
+            observer.carRemoved(removedCar);
         }
+    }
+
+    public void removeCar() {
+       if (!cars.isEmpty()) {
+            Car removedCar = cars.remove(0);
+            notifyCarRemoved(removedCar);
+        }
+    }
+
+
 
 
 

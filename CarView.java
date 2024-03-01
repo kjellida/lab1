@@ -25,6 +25,8 @@ public class CarView extends JFrame{
 
     }
 
+
+
     private void initComponents(String title) {
 
         setTitle(title);
@@ -38,6 +40,7 @@ public class CarView extends JFrame{
         controlPanel = new ControlPanel(carControl).createControlPanel(X);
 
         this.add(controlPanel);
+
 
         this.pack();
 

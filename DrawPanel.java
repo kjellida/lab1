@@ -11,9 +11,11 @@ import javax.swing.*;
 
 // This panel represents the animated part of the view with the car images.
 
-public class DrawPanel extends JPanel{
+public class DrawPanel extends JPanel implements CarObserver{
     HashMap<Car, Point> carPositions = new HashMap<>();
     DrawImage drawImage = new DrawImage();
+
+    //CarShop<Car> workshop;
     CarShop<Car> workshop = new CarShop<>(4, new Point(500, 0));
 
     public DrawPanel(int x, int y) {
@@ -47,9 +49,13 @@ public class DrawPanel extends JPanel{
         carPositions.remove(car);
     }
 
-    void removeImage(Car car){
-        carPositions.remove(car);
+    public void carRemoved(Car car) {
+        if (!carPositions.isEmpty()) {
+            carPositions.remove(car);
+            repaint();
+        }
     }
+
 
 
 

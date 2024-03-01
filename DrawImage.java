@@ -39,7 +39,9 @@ public class DrawImage {
 
     public void drawWorkshop(Graphics g, Point position) {
         if (volvoWorkshopImage != null && position != null) {
+           // g.drawImage(volvoWorkshopImage, (int) shop.location.getX(), (int) shop.location.getY(), null);
             g.drawImage(volvoWorkshopImage, (int) position.getX(), (int) position.getY(), null);
+
         }
     }
 

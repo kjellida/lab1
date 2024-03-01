@@ -22,6 +22,7 @@ public class CarController {
             timer.start();
         }
 
+
         private class TimerListener implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 ArrayList<Car> carsCopy = new ArrayList<>(cars);
@@ -50,7 +51,9 @@ public class CarController {
                     frame.drawPanel.repaint();
 
                     // Remove car if it enters the workshop
-                    if (car instanceof Volvo240 && frame.drawPanel.workshop.isWithinWorkshopRadius(car.pos, frame.drawPanel.workshop.location, 10)) {
+                   // if (car instanceof Volvo240 && carShop.isWithinWorkshopRadius(car.pos, frame.drawPanel.workshop.location, 10)) {
+// göra en getworkshop metod
+                   if (car instanceof Volvo240 && frame.drawPanel.workshop.isWithinWorkshopRadius(car.pos, frame.drawPanel.workshop.location, 10)) {
                         frame.drawPanel.addToCarShop(car);
                         cars.remove(car);
                     }
